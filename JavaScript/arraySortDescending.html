@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Descending Array</title>
+</head>
+<body>
+    <h2>Enter Array Elements (comma-separated) example: 10,20,30 </h2>
+    <form id="arrayForm">
+        <input type="text" id="arrayInput" placeholder="Enter elements separated by commas">
+        <button type="submit" id="sortButton">Sort Descending</button>
+    </form>
+    
+    <h2>Sorted Array (Descending Order)</h2>
+    <div id="sortedArray"></div>
+
+    <script>
+        document.getElementById("arrayForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const inputElement = document.getElementById("arrayInput");
+            const inputValue = inputElement.value.trim();
+
+            if (inputValue !== "") {
+                const array = inputValue.split(',');
+                
+                array.forEach((element, index) => {
+                    array[index] = element.trim();
+                });
+                array.sort(function(a, b) {
+                    return b.localeCompare(a);
+                });
+
+                document.getElementById("sortedArray").textContent = array.join(", ");
+            }
+        });
+    </script>
+</body>
+</html>
