@@ -22,13 +22,17 @@
 
             if (inputValue !== "") {
                 const array = inputValue.split(',');
-                
-                array.forEach((element, index) => {
-                    array[index] = element.trim();
-                });
                 array.sort(function(a, b) {
-                    return b.localeCompare(a);
-                });
+                    if (!isNaN(a) && !isNaN(b)) {
+                        return parseInt(b, 10) - parseInt(a, 10);
+                    } else if (!isNaN(a)) {
+                        return -1;
+                    } else if (!isNaN(b)) {
+                        return 1;
+                    } else {
+                        return b.localeCompare(a);
+                    }
+                });                
 
                 document.getElementById("sortedArray").textContent = array.join(", ");
             }
